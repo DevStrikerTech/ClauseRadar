@@ -1,0 +1,36 @@
+steps:
+  # Build and tag the Docker image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/$PROJECT_ID/clause-radar:$BUILD_ID",
+        "."
+      ]
+
+  # Push the image to GCR
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "gcr.io/$PROJECT_ID/clause-radar:$BUILD_ID"
+      ]
+
+  # Deploy to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        gcloud run deploy clause-radar-service \
+          --image gcr.io/$PROJECT_ID/clause-radar:$BUILD_ID \
+          --region us-central1 \
+          --platform managed \
+          --allow-unauthenticated \
+          --memory 1Gi \
+          --set-env-vars "GOOGLE_API_KEY=$_GOOGLE_API_KEY,PINECONE_API_KEY=$_PINECONE_API_KEY,PINECONE_INDEX=$_PINECONE_INDEX,PINECONE_DIMENSION=$_PINECONE_DIMENSION,PINECONE_METRIC=$_PINECONE_METRIC,PINECONE_CLOUD=$_PINECONE_CLOUD,PINECONE_REGION=$_PINECONE_REGION"
+
+# Declare which images are produced by this build
+images:
+  - "gcr.io/$PROJECT_ID/clause-radar:$BUILD_ID"
