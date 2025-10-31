@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Google Gemini (GenAI) Configuration
 GENAI_API_KEY = os.environ["GOOGLE_API_KEY"]

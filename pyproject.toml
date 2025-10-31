@@ -2,11 +2,11 @@
 name = "ClauseRadar"
 version = "0.1.0"
 description = "An AI-powered application to search for contract clauses in PDF documents"
-authors = ["Nishat Ahmed <nishat.ahmed@example.com>"]
+authors = ["Nishat <nishat@example.com>"]
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.10,<3.14"
 streamlit = "^1.24.0"
 pinecone = "7.0.1"
 pinecone-client = "^2.2.1"
@@ -15,6 +15,7 @@ pdfplumber = "^0.8.1"
 numpy = "^1.24.0"
 plotly = "^5.14.1"
 pyreadline3 = "^3.5.4"
+python-dotenv = "^1.2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.0"
