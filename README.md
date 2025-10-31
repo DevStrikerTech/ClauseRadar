@@ -4,6 +4,8 @@ ClauseRadar is an AI-powered Streamlit application for searching contract clause
 Gemini for text embeddings and Pinecone for efficient vector search. Users can upload one or more PDF contracts, enter
 any keyword or phrase, and retrieve the most relevant clauses across all indexed documents.
 
+![alt text](https://github.com/DevStrikerTech/ClauseRadar/blob/master/doc/provisense_demo.png?raw=true)
+
 ## Features
 
 - **PDF Ingestion**: Upload multiple PDF contracts and automatically extract text.
